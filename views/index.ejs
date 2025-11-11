@@ -1,1 +1,62 @@
-<hi> Akinlolu Ariyo</hi>
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+<%- include('partials/nav', { active: 'home' }) %>
+
+<main id="main" class="wrapper home" role="main">
+  <!-- Hero -->
+  <section class="hero" aria-label="Featured Vehicle">
+    <picture>
+      <!-- Update filenames to match your starter images -->
+      <source srcset="/images/hero-large.jpg" media="(min-width: 64rem)">
+      <img src="/public/images/site/checkerboard.jpg" alt="Sleek sports car on an open road" width="1280" height="720">
+    </picture>
+    <div class="hero-card">
+      <h1>New Arrivals Are Here</h1>
+      <p>Transparent prices. Certified vehicles. Friendly experts.</p>
+      <a class="btn btn-primary" href="/inventory">Shop Inventory</a>
+    </div>
+  </section>
+
+  <!-- Promo tiles -->
+  <section class="promos" aria-label="Delorean Upgrades">
+    <article class="tile">
+      <img src="/images/flux-capacitor.png" alt="Flux Capacitor">
+      <h3><a href="#">Flux Capacitor</a></h3>
+    </article>
+
+    <article class="tile">
+      <img src="/images/flame-decals.png" alt="Flame Decals">
+      <h3><a href="#">Flame Decals</a></h3>
+    </article>
+
+    <article class="tile">
+      <img src="/images/bumper-sticker.png" alt="Bumper Stickers">
+      <h3><a href="#">Bumper Stickers</a></h3>
+    </article>
+
+    <article class="tile">
+      <img src="/images/hub-caps.png" alt="Hub Caps">
+      <h3><a href="#">Hub Caps</a></h3>
+    </article>
+  </section>
+
+  <!-- Value props -->
+  <section class="value-props" aria-label="Why choose CSE Motors">
+    <ul>
+      <li>
+        <h3>Clear Pricing</h3>
+        <p>No hidden fees. See the out‑the‑door price upfront.</p>
+      </li>
+      <li>
+        <h3>Inspected & Certified</h3>
+        <p>Every vehicle passes a rigorous multi‑point inspection.</p>
+      </li>
+      <li>
+        <h3>Fast Financing</h3>
+        <p>Apply online and get same‑day decisions.</p>
+      </li>
+    </ul>
+  </section>
+</main>
+
+<%- include('partials/footer') %>

@@ -1,8 +1,13 @@
-<header id="top-header">
-  <span class="siteName">
-    <a href="/" title="Return to home page">CSE Motors</a>
-  </span>
-  <div id="tools">
-    <a title="Click to log in" href="/account/login">My Account</a>
+<header class="site-header" role="banner">
+  <div class="wrapper header-inner">
+    <a class="brand" href="/" aria-label="CSE Motors Home">
+      <img src="/public/images/site/checkerboard.jpg" alt="CSE Motors" width="40" height="40" />
+      <span class="brand-name">CSE Motors</span>
+    </a>
+    <form class="site-search" action="/search" method="get" role="search" aria-label="Site">
+      <label class="sr-only" for="q">Search inventory</label>
+      <input id="q" name="q" type="search" placeholder="Search inventory…" />
+      <button type="submit">Search</button>
+    </form>
   </div>
 </header>

@@ -1,6 +1,127 @@
-/******* Change Box Model ***************/
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
+/* CSE Motors — styles.css */
+/* Mobile-first; only a single enhancement breakpoint later */
+:root{
+  --bg: #ffffff;
+  --ink: #111;
+  --muted: #555;
+  --primary: #0D47A1;   /* deep blue text (links/heading highlights) */
+  --brand:  #12B8D4;    /* cyan border/button background from sample */
+  --nav:    #262A35;    /* dark nav bar */
+  --card:   #F7FAFC;
+  --border: #E2E8F0;
+  --maxw:   74rem;
 }
+
+*{ box-sizing: border-box; }
+html,body{ margin:0; padding:0; }
+body{
+  color: var(--ink);
+  background:
+    conic-gradient(#000 25%,transparent 0) 0 0/40px 40px,
+    conic-gradient(#000 25%,transparent 0) 20px 20px/40px 40px,
+    #fff; /* checkerboard border background like the sample */
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Page shell (gives the cyan outline around the white content area) */
+.wrapper{
+  width:100%;
+  max-width:var(--maxw);
+  margin-inline:auto;
+  padding-inline:1rem;
+}
+main.home{
+  background:#fff;
+  border:4px solid var(--brand);
+  border-radius:14px;
+  margin:1rem auto 3rem;
+  padding:1rem 1rem 2rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+}
+
+/* Accessibility helpers */
+.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+.skip-link{ position:absolute; left:-9999px; }
+.skip-link:focus{ position:fixed; left:1rem; top:1rem; padding:.5rem .75rem; background:#000; color:#fff; z-index:10; border-radius:.25rem; }
+
+/* Header */
+.site-header{ background:#fff; color:#222; }
+.header-inner{ display:flex; align-items:center; justify-content:space-between; gap:1rem; padding-block:1rem; }
+.brand{ display:flex; align-items:center; gap:.6rem; text-decoration:none; color:inherit; font-weight:800; font-size:1.85rem; letter-spacing:.2px; }
+
+/* Top nav – dark bar with “tabs” */
+.site-nav{ background:var(--nav); }
+.site-nav .wrapper{ padding-inline:0; }
+.site-nav ul{ list-style:none; margin:0; padding:.25rem; display:flex; gap:.25rem; justify-content:center; }
+.site-nav a{
+  color:#fff; text-decoration:none; font-weight:700; letter-spacing:.2px;
+  display:inline-block; padding:.75rem 1.25rem; border-radius:.4rem;
+}
+.site-nav a[aria-current="page"], .site-nav a:hover{
+  background:rgba(255,255,255,.12);
+}
+
+/* Headings & body text */
+h1,h2,h3{ margin:.2rem 0 .6rem; font-weight:900; letter-spacing:.2px; }
+h1{ font-size: clamp(1.6rem, 2.2vw + 1rem, 2.4rem); }
+h2{ font-size: clamp(1.25rem, 1.2vw + .9rem, 1.6rem); }
+p,li{ color:#222; }
+
+/* HERO section with translucent overlay card */
+.hero{
+  position:relative; margin-block:1rem; border-radius:1rem; overflow:hidden; background:#000;
+}
+.hero picture, .hero img{ display:block; width:100%; height:auto; }
+.hero-card{
+  position:absolute; left:1rem; bottom:1rem; right:1rem;
+  max-width:28rem;
+  background: linear-gradient(90deg, rgba(18,184,212,.92), rgba(18,184,212,.75));
+  color:#fff; padding:1rem 1.1rem; border-radius:.6rem;
+}
+.hero-card h1{ margin:0 0 .25rem 0; }
+.hero-card p{ margin:.15rem 0 .75rem; color:#E8FBFF; }
+
+/* Button (Own Today) */
+.btn{
+  display:inline-block; padding:.7rem 1.1rem; border-radius:.55rem; font-weight:800;
+  text-decoration:none; border:2px solid transparent; cursor:pointer;
+}
+.btn-primary{ background:var(--brand); color:#08323A; }
+.btn-primary:hover{ filter:brightness(.97); }
+
+/* “DMC Delorean Reviews” list appearance */
+.reviews{ margin-block:1.25rem 2rem; }
+.reviews h2{ margin-bottom:.5rem; }
+.reviews ul{ margin:.25rem 0 0 1.25rem; }
+
+/* Upgrades/tiles – match the 2x2 blue cards on mobile */
+.promos{                /* keep your existing section name */
+  display:grid; gap:1rem; margin-block:1.25rem;
+  grid-template-columns: repeat(2, 1fr);   /* 2-up on mobile like the screenshot */
+}
+.tile{
+  background: #1CB4CF; /* bright teal tile */
+  border-radius:.5rem; overflow:hidden; border:1px solid rgba(0,0,0,.06);
+  text-align:center; padding:.5rem;
+}
+.tile img{ display:block; width:100%; height:auto; object-fit:cover; background:#fff; }
+.tile-body{ padding:.4rem; }
+.tile-body h2{ margin:.3rem 0 .2rem; font-size:1.05rem; color:#0B2A30; }
+.tile-body p{ margin:0 0 .4rem; color:#073640; }
+.tile-body a.btn{ background:#fff; color:#0B2A30; border-color:#0B2A30; }
+
+/* Footer */
+.site-footer{ background:#fff; border-top:1px solid var(--border); margin-top:2rem; }
+.footer-grid{ display:grid; gap:1rem; padding-block:1rem; grid-template-columns:1fr; }
+.site-footer p, .site-footer a{ color:#333; }
+
+/* --- Enhancement for larger screens --- */
+@media (min-width: 48rem){
+  main.home{ padding:1.5rem 2rem 2.25rem; }
+  .hero-card{ left:2rem; bottom:2rem; right:auto; }
+  .promos{ grid-template-columns: repeat(4, 1fr); }  /* spreads out on desktop */
+  .footer-grid{ grid-template-columns: repeat(3, 1fr); }
+}
+
