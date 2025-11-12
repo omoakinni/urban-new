@@ -1,17 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<%- include('../partials/head') %>    
-
-<body>
-    <div id="wrapper">
-        <%- include('../partials/header') %>
-        <%- include('../partials/navigation') %>
-         
-         <main>
-            <%- body %>
-         </main>
-         
-         <%- include('../partials/footer') %>
+  <head>
+    <%- include("../partials/head") %>
+  </head>
+  <body>
+    <!-- Everything is inside .page so nothing floats on the checker bg -->
+    <div class="page">
+      <%- include("../partials/header") %>
+      <%- include("../partials/nav") %>
+      <main id="main">
+        <%- body %>
+      </main>
+      <%- include("../partials/footer") %>
     </div>
-</body>
+    <script src="/js/main.js" defer></script>
+  </body>
 </html>

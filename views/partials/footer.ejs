@@ -1,22 +1,3 @@
-<% const d = new Date()
-let year = d.getFullYear() %>
 <footer class="site-footer">
-  <div class="wrapper footer-grid">
-    <section aria-labelledby="contact-heading">
-      <h2 id="contact-heading">Contact</h2>
-      <address>
-        1234 Motor Way, Brampton, ON<br>
-        <a href="tel:+19055550123">(905) 555-0123</a><br>
-        <a href="mailto:sales@csemotors.example">sales@csemotors.example</a>
-      </address>
-    </section>
-    <section aria-labelledby="hours-heading">
-      <h2 id="hours-heading">Hours</h2>
-      <p>Mon–Sat: 9am–7pm<br>Sun: Closed</p>
-    </section>
-    <section aria-labelledby="legal-heading">
-      <h2 id="legal-heading">Legal</h2>
-      <p>&copy; <span id="year"><%= new Date().getFullYear() %></span> CSE Motors. All rights reserved.</p>
-    </section>
-  </div>
+  <p>&copy; <span id="year"><script>document.getElementById('year').textContent=new Date().getFullYear()</script></span> CSE Motors</p>
 </footer>

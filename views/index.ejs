@@ -1,62 +1,60 @@
-<%- include('partials/head') %>
-<%- include('partials/header') %>
-<%- include('partials/nav', { active: 'home' }) %>
+<h1 class="welcome">Welcome to CSE Motors!</h1>
 
-<main id="main" class="wrapper home" role="main">
-  <!-- Hero -->
-  <section class="hero" aria-label="Featured Vehicle">
-    <picture>
-      <!-- Update filenames to match your starter images -->
-      <source srcset="/images/hero-large.jpg" media="(min-width: 64rem)">
-      <img src="/public/images/site/checkerboard.jpg" alt="Sleek sports car on an open road" width="1280" height="720">
-    </picture>
-    <div class="hero-card">
-      <h1>New Arrivals Are Here</h1>
-      <p>Transparent prices. Certified vehicles. Friendly experts.</p>
-      <a class="btn btn-primary" href="/inventory">Shop Inventory</a>
-    </div>
-  </section>
+<!-- Hero -->
+<section class="hero" aria-labelledby="dmc-title">
+  <img src="/images/vehicles/delorean.jpg" alt="DMC Delorean sports car" width="820" height="360" loading="eager">
 
-  <!-- Promo tiles -->
-  <section class="promos" aria-label="Delorean Upgrades">
-    <article class="tile">
-      <img src="/images/flux-capacitor.png" alt="Flux Capacitor">
-      <h3><a href="#">Flux Capacitor</a></h3>
-    </article>
-
-    <article class="tile">
-      <img src="/images/flame-decals.png" alt="Flame Decals">
-      <h3><a href="#">Flame Decals</a></h3>
-    </article>
-
-    <article class="tile">
-      <img src="/images/bumper-sticker.png" alt="Bumper Stickers">
-      <h3><a href="#">Bumper Stickers</a></h3>
-    </article>
-
-    <article class="tile">
-      <img src="/images/hub-caps.png" alt="Hub Caps">
-      <h3><a href="#">Hub Caps</a></h3>
-    </article>
-  </section>
-
-  <!-- Value props -->
-  <section class="value-props" aria-label="Why choose CSE Motors">
-    <ul>
-      <li>
-        <h3>Clear Pricing</h3>
-        <p>No hidden fees. See the out‑the‑door price upfront.</p>
-      </li>
-      <li>
-        <h3>Inspected & Certified</h3>
-        <p>Every vehicle passes a rigorous multi‑point inspection.</p>
-      </li>
-      <li>
-        <h3>Fast Financing</h3>
-        <p>Apply online and get same‑day decisions.</p>
-      </li>
+  <div class="callout">
+    <h2 id="dmc-title">DMC Delorean</h2>
+    <ul class="features">
+      <li>3 Cup holders</li>
+      <li>Superman doors</li>
+      <li>Fuzzy dice!</li>
     </ul>
-  </section>
-</main>
+    <a class="btn-primary" href="#">Own Today</a>
+  </div>
+</section>
 
-<%- include('partials/footer') %>
+<!-- Content grid -->
+<section class="columns" aria-label="Reviews and Upgrades">
+  <aside class="upgrades" aria-labelledby="upgrades-title">
+    <h2 id="upgrades-title">Delorean Upgrades</h2>
+    <div class="cards">
+      <a class="card" href="#">
+        <div class="thumb">
+          <img src="/images/upgrades/flux-cap.png" alt="Flux Capacitor" width="80" height="80" loading="lazy">
+        </div>
+        <span class="label">Flux Capacitor</span>
+      </a>
+      <a class="card" href="#">
+        <div class="thumb">
+          <img src="/images/upgrades/flame.jpg" alt="Flame Decals" width="80" height="80" loading="lazy">
+        </div>
+        <span class="label">Flame Decals</span>
+      </a>
+      <a class="card" href="#">
+        <div class="thumb">
+          <img src="/images/upgrades/bumper_sticker.jpg" alt="Bumper Stickers" width="80" height="80" loading="lazy">
+        </div>
+        <span class="label">Bumper Stickers</span>
+      </a>
+      <a class="card" href="#">
+        <div class="thumb">
+          <img src="/images/upgrades/hub-cap.jpg" alt="Hub Caps" width="80" height="80" loading="lazy">
+        </div>
+        <span class="label">Hub Caps</span>
+      </a>
+    </div>
+  </aside>
+
+  <article class="reviews">
+    <h2>DMC Delorean Reviews</h2>
+    <ul>
+      <li>“So fast it’s almost like traveling in time.” (4/5)</li>
+      <li>“Coolest ride on the road.” (4/5)</li>
+      <li>“I’m feeling McFly!” (5/5)</li>
+      <li>“The most futuristic ride of our day.” (4.5/5)</li>
+      <li>“80’s livin and I love it!” (5/5)</li>
+    </ul>
+  </article>
+</section>

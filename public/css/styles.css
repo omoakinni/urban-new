@@ -1,127 +1,441 @@
-/* CSE Motors — styles.css */
-/* Mobile-first; only a single enhancement breakpoint later */
-:root{
-  --bg: #ffffff;
-  --ink: #111;
-  --muted: #555;
-  --primary: #0D47A1;   /* deep blue text (links/heading highlights) */
-  --brand:  #12B8D4;    /* cyan border/button background from sample */
-  --nav:    #262A35;    /* dark nav bar */
-  --card:   #F7FAFC;
-  --border: #E2E8F0;
-  --maxw:   74rem;
+/* =========================================
+   CSE Motors — Pixel-match styles
+   Mobile-first; 1 desktop MQ at 960px
+   ========================================= */
+
+/* Reset-ish */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
 }
 
-*{ box-sizing: border-box; }
-html,body{ margin:0; padding:0; }
-body{
-  color: var(--ink);
-  background:
-    conic-gradient(#000 25%,transparent 0) 0 0/40px 40px,
-    conic-gradient(#000 25%,transparent 0) 20px 20px/40px 40px,
-    #fff; /* checkerboard border background like the sample */
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  line-height: 1.55;
+  color: #101418;
+  background: #fff; /* Default background for mobile */
 }
 
-/* Page shell (gives the cyan outline around the white content area) */
-.wrapper{
-  width:100%;
-  max-width:var(--maxw);
-  margin-inline:auto;
-  padding-inline:1rem;
-}
-main.home{
-  background:#fff;
-  border:4px solid var(--brand);
-  border-radius:14px;
-  margin:1rem auto 3rem;
-  padding:1rem 1rem 2rem;
-  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+/* Checkerboard background only for desktop */
+@media (min-width: 961px) {
+  body {
+    background: url("/images/site/checkerboard.jpg") repeat center;
+    background-size: 700px 700px;
+  }
 }
 
-/* Accessibility helpers */
-.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
-.skip-link{ position:absolute; left:-9999px; }
-.skip-link:focus{ position:fixed; left:1rem; top:1rem; padding:.5rem .75rem; background:#000; color:#fff; z-index:10; border-radius:.25rem; }
+/* Media should never overflow the container */
+img, video, svg, canvas { max-width: 100%; height: auto; display: block; }
 
-/* Header */
-.site-header{ background:#fff; color:#222; }
-.header-inner{ display:flex; align-items:center; justify-content:space-between; gap:1rem; padding-block:1rem; }
-.brand{ display:flex; align-items:center; gap:.6rem; text-decoration:none; color:inherit; font-weight:800; font-size:1.85rem; letter-spacing:.2px; }
-
-/* Top nav – dark bar with “tabs” */
-.site-nav{ background:var(--nav); }
-.site-nav .wrapper{ padding-inline:0; }
-.site-nav ul{ list-style:none; margin:0; padding:.25rem; display:flex; gap:.25rem; justify-content:center; }
-.site-nav a{
-  color:#fff; text-decoration:none; font-weight:700; letter-spacing:.2px;
-  display:inline-block; padding:.75rem 1.25rem; border-radius:.4rem;
+/* ===== Accessibility: Skip link ===== */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
 }
-.site-nav a[aria-current="page"], .site-nav a:hover{
-  background:rgba(255,255,255,.12);
+.skip-link:focus {
+  left: 1rem; top: 1rem;
+  background: #fff; color: #0a2848;
+  padding: .5rem .75rem; border-radius: .5rem;
+  outline: 3px solid #00c2ff;
 }
 
-/* Headings & body text */
-h1,h2,h3{ margin:.2rem 0 .6rem; font-weight:900; letter-spacing:.2px; }
-h1{ font-size: clamp(1.6rem, 2.2vw + 1rem, 2.4rem); }
-h2{ font-size: clamp(1.25rem, 1.2vw + .9rem, 1.6rem); }
-p,li{ color:#222; }
+/* ===== Page container ===== */
+.page {
+  width: min(980px, 100%);
+  margin: 16px auto;
+  background: #fff;
+  border: 4px solid #78d0ff;
+  border-radius: 14px;
+  box-shadow: 0 14px 34px rgba(0,0,0,.18);
+  overflow: clip;
+}
 
-/* HERO section with translucent overlay card */
-.hero{
-  position:relative; margin-block:1rem; border-radius:1rem; overflow:hidden; background:#000;
+/* ===== Header ===== */
+.site-header .brand-row {
+  display: grid;
+  grid-template-columns: 1fr auto; /* brand | account */
+  align-items: center;
+  gap: .75rem;
+  padding: 14px 16px 8px;
 }
-.hero picture, .hero img{ display:block; width:100%; height:auto; }
-.hero-card{
-  position:absolute; left:1rem; bottom:1rem; right:1rem;
-  max-width:28rem;
-  background: linear-gradient(90deg, rgba(18,184,212,.92), rgba(18,184,212,.75));
-  color:#fff; padding:1rem 1.1rem; border-radius:.6rem;
+.brand {
+  font-family: Raleway, system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.05rem, 6vw, 2.4rem);
+  line-height: 1;
+  margin: 0;
+  color: #0c1022;
 }
-.hero-card h1{ margin:0 0 .25rem 0; }
-.hero-card p{ margin:.15rem 0 .75rem; color:#E8FBFF; }
+.brand span { color: #2c63ff; }
+.account-link {
+  justify-self: end;
+  text-decoration: none;
+  font-size: .95rem;
+  color: #2a3656;
+}
+.account-link:hover,
+.account-link:focus-visible { text-decoration: underline; }
 
-/* Button (Own Today) */
-.btn{
-  display:inline-block; padding:.7rem 1.1rem; border-radius:.55rem; font-weight:800;
-  text-decoration:none; border:2px solid transparent; cursor:pointer;
-}
-.btn-primary{ background:var(--brand); color:#08323A; }
-.btn-primary:hover{ filter:brightness(.97); }
+.nav-toggle { display: none; }
 
-/* “DMC Delorean Reviews” list appearance */
-.reviews{ margin-block:1.25rem 2rem; }
-.reviews h2{ margin-bottom:.5rem; }
-.reviews ul{ margin:.25rem 0 0 1.25rem; }
+/* ===== Navigation ===== */
+.site-nav {
+  background: #2b2e43;
+  overflow-x: hidden;
+}
 
-/* Upgrades/tiles – match the 2x2 blue cards on mobile */
-.promos{                /* keep your existing section name */
-  display:grid; gap:1rem; margin-block:1.25rem;
-  grid-template-columns: repeat(2, 1fr);   /* 2-up on mobile like the screenshot */
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 10px 12px;
+  display: flex;
+  flex-wrap: wrap;              /* wraps on small screens (no cut-off) */
+  gap: 12px 18px;               /* more space between pills */
+  white-space: normal;
 }
-.tile{
-  background: #1CB4CF; /* bright teal tile */
-  border-radius:.5rem; overflow:hidden; border:1px solid rgba(0,0,0,.06);
-  text-align:center; padding:.5rem;
+
+.nav-list li { flex: 0 0 auto; }
+
+.nav-list a {
+  display: inline-block;
+  text-align: center;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: #1f2133;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: clamp(13px, 3.5vw, 15px);
+  letter-spacing: 0.1px;
+  box-shadow: 0 2px 0 rgba(0,0,0,.25) inset;
 }
-.tile img{ display:block; width:100%; height:auto; object-fit:cover; background:#fff; }
-.tile-body{ padding:.4rem; }
-.tile-body h2{ margin:.3rem 0 .2rem; font-size:1.05rem; color:#0B2A30; }
-.tile-body p{ margin:0 0 .4rem; color:#073640; }
-.tile-body a.btn{ background:#fff; color:#0B2A30; border-color:#0B2A30; }
+.nav-list a:hover { filter: brightness(1.08); }
+.nav-list a:focus-visible { outline: 3px solid #00c2ff; }
+.nav-list a[aria-current="page"] { outline: 3px solid #78d0ff; }
+
+/* Ultra-narrow devices: make pills extra compact */
+@media (max-width: 360px) {
+  .nav-list { gap: 8px 10px; padding: 8px 10px; }
+  .nav-list a { padding: 7px 12px; font-size: 13px; }
+}
+
+/* ===== Main ===== */
+main { padding: 0 16px 18px; }
+.welcome {
+  font-family: Raleway, system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.35rem, 4.6vw, 1.75rem);
+  margin: 14px 0 14px;
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  background: #eef5ff;  /* light blue pane */
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.hero img { width: 100%; height: auto; display: block; }
+
+/* ===== Callout (desktop base) ===== */
+.callout {
+  position: absolute;
+  top: 9%;
+  left: 5%;
+  width: clamp(240px, 32vw, 300px);
+  background: rgba(0,190,238,0.85); /* semi-transparent cyan desktop */
+  color: #ffffff;                   /* readable text on cyan */
+  padding: 14px 16px 18px;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.18);
+}
+.callout h2 {
+  margin: 0 0 6px;
+  font: 800 1.06rem/1.18 Raleway, system-ui, sans-serif;
+  letter-spacing: 0.2px;
+  color: #073c7a;                   /* title pop */
+}
+.callout .features {
+  list-style: disc;
+  margin: 0 0 10px 18px;
+  padding: 0;
+  line-height: 1.25;
+}
+.callout .features li { color: #ffffff; opacity: 0.95; }
+
+/* ===== Primary button (desktop base) ===== */
+.btn-primary {
+  display: inline-block;
+  padding: 9px 14px;
+  background: rgba(10,39,73,0.88);  /* translucent navy */
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.22);
+  margin-top: 10px;
+}
+.btn-primary:focus-visible {
+  outline: 3px solid #031424;
+  box-shadow: 0 0 0 4px #78d0ff;
+}
+
+/* ===== Columns (mobile first) ===== */
+.columns {
+  display: grid;
+  gap: 18px;
+  margin-top: 14px;
+}
+/* Order: Reviews first on mobile */
+.reviews { order: 1; }
+.upgrades { order: 2; }
+
+.columns h2 {
+  font-family: Raleway, system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1.25rem;
+  margin: 0 0 12px;
+}
+
+/* Reviews */
+.reviews ul { margin: 6px 0 0; padding-left: 1.1rem; }
+.reviews li { margin: 10px 0; }
+
+/* Upgrades grid */
+.upgrades .cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.card {
+  background: #09b6d1;
+  border-radius: 10px;
+  padding: 8px;
+  text-align: center;
+  text-decoration: none;
+  color: #0a1022;
+  box-shadow: 0 10px 20px rgba(0,0,0,.12);
+}
+.card img { border-radius: 8px; }
+.card span {
+  display:inline-block; margin-top: 8px; font-weight: 700;
+  text-decoration: underline;
+}
+.card:focus-visible { outline: 3px solid #031424; box-shadow: 0 0 0 4px #78d0ff; }
 
 /* Footer */
-.site-footer{ background:#fff; border-top:1px solid var(--border); margin-top:2rem; }
-.footer-grid{ display:grid; gap:1rem; padding-block:1rem; grid-template-columns:1fr; }
-.site-footer p, .site-footer a{ color:#333; }
-
-/* --- Enhancement for larger screens --- */
-@media (min-width: 48rem){
-  main.home{ padding:1.5rem 2rem 2.25rem; }
-  .hero-card{ left:2rem; bottom:2rem; right:auto; }
-  .promos{ grid-template-columns: repeat(4, 1fr); }  /* spreads out on desktop */
-  .footer-grid{ grid-template-columns: repeat(3, 1fr); }
+.site-footer {
+  border-top: 1px solid #e8eef7;
+  padding: 14px 16px 18px;
+  color: #3a435a;
+  font-size: .95rem;
 }
 
+/* ===== Desktop layout ===== */
+@media (min-width: 960px) {
+  .site-header .brand-row {
+    grid-template-columns: auto 1fr auto;  /* brand | spacer | account */
+    padding: 18px 20px 8px;
+  }
+
+  .site-nav { padding: 0; }
+  .nav-list {
+    padding: 12px 20px;
+    justify-content: center;     /* center pills on desktop */
+    gap: 14px 22px;              /* more space between pills */
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .nav-list a { padding: 10px 20px; }
+
+  main { padding: 0 20px 22px; }
+  .hero { margin-bottom: 14px; }
+  .callout { top: 12%; left: 10%; width: 260px; }
+
+  /* Two columns: Upgrades left, Reviews right */
+  .columns {
+    grid-template-columns: 1.1fr .9fr;
+    align-items: start;
+    gap: 22px;
+    margin-top: 16px;
+  }
+  .upgrades { order: 1; }
+  .reviews { order: 2; }
+}
+
+/* ===== Mobile hero: transparent left slab + vivid blue button ===== */
+@media (max-width: 600px) {
+  .hero { position: relative; }
+
+  .callout {
+    top: 10%;
+    left: 2.5%;
+    width: 58%;                        /* narrow slab over headlight */
+    background: rgba(0,190,238,0.42);  /* transparent cyan */
+    color: #062232;
+    padding: 10px 12px 14px;
+    border-radius: 6px;
+    box-shadow: none;
+    z-index: 1;
+  }
+  .callout h2 {
+    margin: 0 0 4px;
+    font-weight: 800;
+    font-size: 0.98rem;
+    color: #0b5bd3;
+    letter-spacing: 0.1px;
+  }
+  .callout .features {
+    margin: 0 0 8px 16px;
+    line-height: 1.25;
+  }
+  .callout .features li { color: #0b2840; }
+
+  .btn-primary {
+    margin-top: 6px;
+    padding: 8px 12px;
+    background: #007bff;            
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 800;
+    box-shadow: 0 3px 10px rgba(0,0,0,.18);
+  }
+  .btn-primary:hover { background: #0069d9; }
+  .btn-primary:focus-visible {
+    outline: 3px solid #031424;
+    box-shadow: 0 0 0 3px #78d0ff;
+  }
+}
+
+/* Remove duplicate .columns rule and consolidate */
+.columns {
+  display: grid;
+  gap: 20px;
+  margin-top: 14px;
+}
+
+/* Side-by-side layout for desktop */
+@media (min-width: 960px) {
+  .columns {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 24px;
+  }
+
+  .upgrades, .reviews {
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+  }
+}
+
+/* =========================================
+   Pixel-match: Delorean Upgrades tiles
+   ========================================= */
+
+/* Keep your 2x2 grid */
+.upgrades .cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 18px;
+}
+
+/* Card container: strip old look; center label beneath */
+.upgrades .card {
+  background: transparent;
+  padding: 0;
+  text-align: center;
+  text-decoration: none;
+  color: #0a1022;
+  box-shadow: none;
+  display: block;
+  border-radius: 0;
+}
+
+/* Fixed cyan rectangle with image aligned to the LEFT */
+.upgrades .card .thumb {
+  background: #09b6d1;
+  border-radius: 8px;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 10px;
+  overflow: hidden;
+}
+
+/* Image: fixed square inside the cyan rectangle */
+.upgrades .card .thumb img {
+  width: 68px;
+  height: 68px;
+  object-fit: contain;
+  border-radius: 6px;
+  display: block;
+}
+
+/* Blue, underlined label centered under the tile */
+.upgrades .card .label,
+.upgrades .card span {
+  display: block;
+  margin-top: 6px;
+  text-align: center;
+  font-weight: 700;
+  text-decoration: underline;
+  color: #2c63ff;
+  line-height: 1.1;
+  font-size: 0.92rem;
+}
+
+/* Reviews spacing to match screenshot rhythm */
+.reviews ul { margin: 6px 0 0; padding-left: 1.2rem; }
+.reviews li { margin: 10px 0; }
+
+/* =========================================
+   Alignment & visual refinement
+   ========================================= */
+
+/* Center upgrade images better inside the cyan box */
+.upgrades .card .thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #09b6d1;
+  border-radius: 8px;
+  height: 96px;
+  overflow: hidden;
+}
+
+/* Keep image neat and proportional inside */
+.upgrades .card .thumb img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  display: block;
+  border-radius: 6px;
+}
+
+/* Label styling */
+.upgrades .card .label,
+.upgrades .card span {
+  display: block;
+  margin-top: 6px;
+  text-align: center;
+  font-weight: 700;
+  text-decoration: underline;
+  color: #2c63ff;
+  line-height: 1.1;
+  font-size: 0.92rem;
+}
+
+/* Drop the reviews section slightly to align visually with upgrades */
+.reviews {
+  margin-top: 18px;
+}
