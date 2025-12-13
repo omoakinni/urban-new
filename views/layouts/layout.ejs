@@ -1,18 +1,19 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <%- include("../partials/head") %>
-  </head>
-  <body>
-    <!-- Everything is inside .page so nothing floats on the checker bg -->
-    <div class="page">
-      <%- include("../partials/header") %>
-      <%- include("../partials/nav") %>
-      <main id="main">
+  <%- include('../partials/head') %>
+  <body class="site-body">
+    <div class="frame">
+      <%- include('../partials/header') %>
+      <%- include('../partials/nav') %>
+      <main>
+
+        <% if (messages && messages.notice && messages.notice.length) { %>
+          <div class="notice"><%= messages.notice %></div>
+        <% } %>
+
         <%- body %>
       </main>
-      <%- include("../partials/footer") %>
+      <%- include('../partials/footer') %>
     </div>
-    <script src="/js/main.js" defer></script>
   </body>
 </html>

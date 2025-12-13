@@ -1,10 +1,18 @@
-<h1>Inventory Management</h1>
+<%- include("../partials/head") %>
+<%- include("../partials/header") %>
+<%- include("../partials/navigation") %>
 
-<% if (typeof message !== 'undefined' && message) { %>
-  <p class="notice"><%= message %></p>
-<% } %>
+<main>
+  <h1><%= title %></h1>
 
-<ul class="inv-actions">
-  <li><a href="/inv/add-classification">Add New Classification</a></li>
-  <li><a href="/inv/add-inventory">Add New Inventory</a></li>
-</ul>
+  <% if (messages && messages.notice && messages.notice.length) { %>
+    <div class="notice"><%= messages.notice %></div>
+  <% } %>
+
+  <ul>
+    <li><a href="/inv/add-classification">Add New Classification</a></li>
+    <li><a href="/inv/add-inventory">Add New Inventory Item</a></li>
+  </ul>
+</main>
+
+<%- include("../partials/footer") %>

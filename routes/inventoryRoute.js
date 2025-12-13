@@ -1,14 +1,21 @@
+// routes/inventoryRoute.js
 const express = require("express")
 const router = new express.Router()
-const invController = require("../controllers/invController")
-const utilities = require("../utilities")
-const invValidate = require("../utilities/inventory-validation")
 
-// TASK 1: management view
+const invController = require("../controllers/invController")
+const invValidate = require("../utilities/inventory-validation")
+const utilities = require("../utilities")
+
+// Management view
 router.get("/", utilities.handleErrors(invController.buildManagement))
 
-// TASK 2: add classification (form + process)
-router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification))
+// Add classification form
+router.get(
+  "/add-classification",
+  utilities.handleErrors(invController.buildAddClassification)
+)
+
+// Process classification
 router.post(
   "/add-classification",
   invValidate.classificationRules(),
@@ -16,8 +23,13 @@ router.post(
   utilities.handleErrors(invController.addClassification)
 )
 
-// TASK 3: add inventory (form + process)
-router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory))
+// Add inventory form
+router.get(
+  "/add-inventory",
+  utilities.handleErrors(invController.buildAddInventory)
+)
+
+// Process inventory
 router.post(
   "/add-inventory",
   invValidate.inventoryRules(),

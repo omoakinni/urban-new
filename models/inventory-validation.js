@@ -1,9 +1,9 @@
 const { body, validationResult } = require("express-validator")
 const utilities = require(".")
-const invModel = require("../models/inventory-model")
 
 const validate = {}
 
+// Task 2 rules
 validate.classificationRules = () => {
   return [
     body("classification_name")
@@ -16,30 +16,32 @@ validate.classificationRules = () => {
 validate.checkClassificationData = async (req, res, next) => {
   const { classification_name } = req.body
   const errors = validationResult(req)
+
   if (!errors.isEmpty()) {
     const nav = await utilities.getNav()
     return res.render("inventory/add-classification", {
       title: "Add Classification",
       nav,
       errors: errors.array(),
-      classification_name
+      classification_name,
     })
   }
   next()
 }
 
+// Task 3 rules
 validate.inventoryRules = () => {
   return [
+    body("classification_id").isInt().withMessage("Choose a classification."),
     body("inv_make").trim().notEmpty().withMessage("Make is required."),
     body("inv_model").trim().notEmpty().withMessage("Model is required."),
-    body("inv_year").trim().isInt({ min: 1886, max: 2099 }).withMessage("Year must be valid."),
+    body("inv_year").isInt({ min: 1886, max: 2099 }).withMessage("Year must be valid."),
     body("inv_description").trim().notEmpty().withMessage("Description is required."),
     body("inv_image").trim().notEmpty().withMessage("Image path is required."),
     body("inv_thumbnail").trim().notEmpty().withMessage("Thumbnail path is required."),
-    body("inv_price").trim().isFloat({ min: 0 }).withMessage("Price must be a number."),
-    body("inv_miles").trim().isInt({ min: 0 }).withMessage("Miles must be a whole number."),
+    body("inv_price").isFloat({ min: 0 }).withMessage("Price must be a number."),
+    body("inv_miles").isInt({ min: 0 }).withMessage("Miles must be a whole number."),
     body("inv_color").trim().notEmpty().withMessage("Color is required."),
-    body("classification_id").trim().isInt().withMessage("Choose a classification.")
   ]
 }
 
@@ -54,7 +56,7 @@ validate.checkInventoryData = async (req, res, next) => {
       nav,
       classificationList,
       errors: errors.array(),
-      ...req.body // sticky values
+      ...req.body, // ✅ sticky
     })
   }
   next()
