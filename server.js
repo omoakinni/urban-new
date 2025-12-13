@@ -56,7 +56,8 @@ app.use((req, res, next) => {
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout") // relative to /views
-
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 /* ***********************
  * Routes
  *************************/
